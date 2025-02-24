@@ -39,7 +39,7 @@ public class ArchivesController : ControllerBase
     }
 
     [HttpGet("{id}", Name = "GetArchiveById")]
-    public async Task<ActionResult<ArchiveReadDto>> GetArchiveById(int id)
+    public async Task<ActionResult<ArchiveReadDto>> GetArchiveById(Guid id)
     {
         try
         {
@@ -83,7 +83,7 @@ public class ArchivesController : ControllerBase
         }
     }
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateArchive(int id, [FromBody] ArchiveCreateDto archiveUpdateDto)
+    public async Task<IActionResult> UpdateArchive(Guid id, [FromBody] ArchiveCreateDto archiveUpdateDto)
     {
         try
         {
@@ -108,7 +108,7 @@ public class ArchivesController : ControllerBase
         }
     }
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteArchive(int id)
+    public async Task<IActionResult> DeleteArchive(Guid id)
     {
         try
         {

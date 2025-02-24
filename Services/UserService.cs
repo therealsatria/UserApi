@@ -24,7 +24,7 @@ public class UserService : IUserService
         return _mapper.Map<IEnumerable<UserReadDto>>(users);
     }
 
-    public async Task<UserReadDto?> GetUserById(int id)
+    public async Task<UserReadDto?> GetUserById(Guid id)
     {
         var user = await _userRepo.GetByIdAsync(id);
         return user == null ? null : _mapper.Map<UserReadDto>(user);
@@ -37,7 +37,7 @@ public class UserService : IUserService
         return _mapper.Map<UserReadDto>(createdUser);
     }
 
-    public async Task UpdateUser(int id, UserCreateDto userDto)
+    public async Task UpdateUser(Guid id, UserCreateDto userDto)
     {
         var existingUser = await _userRepo.GetByIdAsync(id);
         if (existingUser == null) throw new KeyNotFoundException("User not found");
@@ -46,12 +46,12 @@ public class UserService : IUserService
         await _userRepo.UpdateAsync(existingUser);
     }
 
-    public async Task DeleteUser(int id)
+    public async Task DeleteUser(Guid id)
     {
         await _userRepo.DeleteAsync(id);
     }
 
-    public async Task<IEnumerable<ArchiveReadDto>> GetUserArchives(int userId)
+    public async Task<IEnumerable<ArchiveReadDto>> GetUserArchives(Guid userId)
     {
     var user = await _userRepo.GetByIdAsync(userId);
     if (user == null) throw new KeyNotFoundException("User not found");

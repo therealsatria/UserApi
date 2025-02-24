@@ -39,7 +39,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpGet("{id}", Name = "GetUserById")]
-    public async Task<ActionResult<UserReadDto>> GetUserById(int id)
+    public async Task<ActionResult<UserReadDto>> GetUserById(Guid id)
     {
         try
         {
@@ -90,7 +90,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateUser(int id, [FromBody] UserCreateDto userUpdateDto)
+    public async Task<IActionResult> UpdateUser(Guid id, [FromBody] UserCreateDto userUpdateDto)
     {
         try
         {
@@ -121,7 +121,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteUser(int id)
+    public async Task<IActionResult> DeleteUser(Guid id)
     {
         try
         {
@@ -141,7 +141,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpGet("{userId}/archives")]
-    public async Task<ActionResult<IEnumerable<ArchiveReadDto>>> GetUserArchives(int userId)
+    public async Task<ActionResult<IEnumerable<ArchiveReadDto>>> GetUserArchives(Guid userId)
     {
         try
         {

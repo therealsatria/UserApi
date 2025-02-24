@@ -13,7 +13,7 @@ public class ArchiveRepository : IArchiveRepository
     public async Task<IEnumerable<Archive>> GetAllAsync() => 
         await _context.Archives.Include(a => a.User).ToListAsync();
 
-    public async Task<Archive?> GetByIdAsync(int id) => 
+    public async Task<Archive?> GetByIdAsync(Guid id) => 
         await _context.Archives.Include(a => a.User).FirstOrDefaultAsync(a => a.Id == id);
 
     public async Task<Archive> CreateAsync(Archive archive)
@@ -30,7 +30,7 @@ public class ArchiveRepository : IArchiveRepository
         return archive;
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(Guid id)
     {
         var archive = await GetByIdAsync(id);
         if (archive != null)
@@ -40,7 +40,7 @@ public class ArchiveRepository : IArchiveRepository
         }
     }
 
-    public  async Task<IEnumerable<Archive>> GetByUserIdAsync(int userId)
+    public  async Task<IEnumerable<Archive>> GetByUserIdAsync(Guid userId)
     {
         return await _context.Archives.Where(a => a.UserId == userId).Include(a => a.User).ToListAsync();
         // Include(a => a.User) is used to include related user information when retrieving archives by user id.
@@ -50,7 +50,7 @@ public class ArchiveRepository : IArchiveRepository
         // Note: Make sure to update the corresponding service method as well.
         // This method is used in the UserController.cs file.
         // Example:
-        // public async Task<IActionResult> GetArchivesByUserId(int userId)
+        // public async Task<IActionResult> GetArchivesByUserId(Guid userId)
         // {
         //     var archives = await _archiveRepository.GetByUserIdAsync(userId);
         //     return Ok(archives);
