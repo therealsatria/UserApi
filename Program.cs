@@ -4,7 +4,6 @@ using UserApi.Profiles;
 using UserApi.Repositories;
 using UserApi.Repositories.Interfaces;
 using UserApi.Services.Interfaces;
-using UserApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
@@ -13,7 +12,7 @@ builder.Services.AddScoped<IArchiveService, ArchiveService>();
 builder.Services.AddScoped<IArchiveRepository, ArchiveRepository>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlite(builder.Configuration.GetConnectionString("koneksidb")));
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
